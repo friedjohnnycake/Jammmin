@@ -35,11 +35,11 @@ class App extends Component {
   
   addTrack(track) {
    let playlistTrack = this.state.playlistTracks;
-   if(playlistTrack.map() !== this.track.id){
-        playlistTrack.push(this.track.id)
+    playlistTrack.push(track)
+    this.setState({playlistTracks: playlistTrack})
       }
     }
-  }
+  
 
   render() {
     return (
@@ -53,7 +53,7 @@ class App extends Component {
         </div>
       </div>
     </div>
-    )
+    );
   }
 
 export default App;
