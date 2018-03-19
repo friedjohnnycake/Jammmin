@@ -20,7 +20,7 @@ class App extends Component {
       album: " "}
     ],
     playlistName: 'The Best One',
-    playListTracks: [
+    playlistTracks: [
       {name: " ", 
       artist: " ", 
       album: " "},
@@ -45,7 +45,7 @@ class App extends Component {
     return (
       <div>
       <h1>Ja<span class="highlight">mmm</span>ing</h1>
-      <div class="App">
+      <div className="App">
         {/* <SearchBar/> */}
         <div class="App-playlist">
           <SearchResults searchResults = {this.state.searchResults}/>
@@ -55,5 +55,6 @@ class App extends Component {
     </div>
     )
   }
+ 
 
 export default App;
