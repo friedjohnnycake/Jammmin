@@ -35,7 +35,8 @@ class App extends Component {
   
   addTrack(track) {
    let playlistTrack = this.state.playlistTracks;
-    playlistTrack.push(track)
+   if(!playlistTrack.find(playlistTrack => playlistTrack.id === track.id)) {
+    playlistTrack.push(track);
     this.setState({playlistTracks: playlistTrack})
       }
     }
