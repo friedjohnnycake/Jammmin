@@ -41,7 +41,7 @@ class App extends Component {
    if(!tracks.find(tracks => tracks.id === track.id)) {
     let newList = tracks.concat(track);
     this.setState({playlistTracks: newList})
-      }
+      };
     }
   
   removeTrack(track) {
@@ -49,7 +49,7 @@ class App extends Component {
     if(tracks.find(tracks => tracks.id === track.id)) {
       let filteredTracks = tracks.filter(currentTrack => currentTrack.id !== track.id);
       this.setState({playlistTracks: filteredTracks})
-    }
+    };
   }
   
 
