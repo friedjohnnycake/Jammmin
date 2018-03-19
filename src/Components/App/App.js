@@ -31,15 +31,26 @@ class App extends Component {
       artist: " ", 
       album: " "}
     ]}
+
+    this.addTrack = this.addTrack.bind(this);
+    this.removeTrack = this.removeTrack.bind(this);
   }
   
   addTrack(track) {
-   let playlistTrack = this.state.playlistTracks;
-   if(!playlistTrack.find(playlistTrack => playlistTrack.id === track.id)) {
-    playlistTrack.push(track);
-    this.setState({playlistTracks: playlistTrack})
+   let tracks = this.state.playlistTracks;
+   if(!tracks.find(tracks => tracks.id === track.id)) {
+    let newList = tracks.concat(track);
+    this.setState({playlistTracks: newList})
       }
     }
+  
+  removeTrack(track) {
+    let tracks = this.state.playlistTracks;
+    if(tracks.find(tracks => tracks.id === track.id)) {
+      let filteredTracks = tracks.filter(currentTrack => currentTrack.id !== track.id);
+      this.setState({playlistTracks: filteredTracks})
+    }
+  }
   
 
   render() {
@@ -49,13 +60,14 @@ class App extends Component {
       <div className="App">
         {/* <SearchBar/> */}
         <div class="App-playlist">
-          <SearchResults searchResults = {this.state.searchResults}/>
+          <SearchResults searchResults = {this.state.searchResults} onAdd = {this.addTrack} onRemove = {this.removeTrack}/>
           <Playlist playlistName={this.state.playlistName} playlistTracks={this.state.playlistTracks}/>
         </div>
       </div>
     </div>
     )
   }
+}
  
 
 export default App;
