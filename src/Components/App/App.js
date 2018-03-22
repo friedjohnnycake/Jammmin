@@ -20,7 +20,7 @@ class App extends Component {
       artist: " ", 
       album: " "}
     ],
-    playlistName: 'The Best One',
+    playlistName: '',
     playlistTracks: [
       {name: " ", 
       artist: " ", 
@@ -66,10 +66,13 @@ class App extends Component {
 // generates a list of uris from the playlistTracks property
   savePlaylist(){
     const trackURIs = this.state.playlistTracks.map(track => track.uri);
+    Spotify.savePlaylist();
+    
   }
 
 // 
 search(term) {
+  Spotify.search(term);
     console.log(`Searching Spotify for: ${term}`)
 }
 
