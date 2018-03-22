@@ -83,10 +83,10 @@ search(term) {
   render() {
     return (
       <div>
-      <h1>Ja<span class="highlight">mmm</span>ing</h1>
+      <h1>Ja<span className="highlight">mmm</span>ing</h1>
       <div className="App">
         <SearchBar onSearch={this.search}/>
-        <div class="App-playlist">
+        <div className="App-playlist">
           <SearchResults searchResults = {this.state.searchResults} onAdd = {this.addTrack} onRemove = {this.removeTrack}/>
           <Playlist playlistName={this.state.playlistName} onSave = {this.savePlaylist} onNameChange = {this.updatePlaylistName} playlistTracks={this.state.playlistTracks} onAdd = {this.addTrack} onRemove={this.removeTrack}/>
         </div>
