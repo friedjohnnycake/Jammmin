@@ -21,6 +21,7 @@ const Spotify = {
            expiresIn = expiresInMatch[1];
            window.setTimeout=(() => accessToken = '', expiresIn * 1000);
            window.history.pushState('Access Token', null, '/');
+           return accessToken;
         }
         //Access Token variable is empty and not in the URL
         else{
@@ -31,6 +32,7 @@ const Spotify = {
     
     //returns a promise that will eventually resolve to a list of tracks
     search(term) {
+        const getAccessToken = Spotify.getAccessToken();
         return fetch(`https://api.spotify.com/v1/search?type=track&q=${term}`,
         {headers: {
             'Authorization': `Bearer ${accessToken}` 
@@ -51,45 +53,41 @@ const Spotify = {
         });
     },
 
-    savePlaylist(this.state.playlistName, trackURIs) {
-        if(!this.state.playlistName || !trackURIs){
+    savePlaylist(name, trackURIs) {
+        if(!name|| !trackURIs){
             return
         };
-        let accessToken = '';
+        const accessToken = Spotify.getAccessToken();
         let headers = {Authorization: 'Bearer ' + accessToken};
         let userId = '';
-        
+
         return fetch('https://api.spotify.com/v1/me', {
             headers: headers
         }).then(response => {return response.json()
         }).then(jsonResponse => {
-            if(jsonResponse.id) {
-                return userID = jsonResponse.id
-            }
-        }).then(() => {
-            return fetch(`/v1/users/${userID}/playlists`, {
-                method: 'POST',
-                headers: headers,
-                body: JSON.stringify({name: this.state.playlistName})
-            }).then(response => {return response.json()
-            }).then(jsonResponse => {
-                if(jsonResponse.id) {
-                    return playlistID = jsonResponse.id
-                };
-            }).then(() => 
-                return fetch(`/v1/users/${userID}/playlists/${playlistID}/tracks)`,{
-                    headers: headers,
-                    method: 'POST',
-                    body: JSON.stringify({uri: trackURIs})
-                }).then(response => {return response.json()
-                }).then(jsonResponse => {
-                    if(jsonResponse.id) {
-                        return playlistID = jsonResponse.id
-                    }
-                })
+            userId = jsonResponse.id;
+            })
+        return fetch(`/v1/users/${userId}/playlists`, {
+            method: 'POST',
+            headers: headers,
+            body: JSON.stringify({name: name})
+        }).then(response => {return response.json()
+        }).then(jsonResponse => {
+            playlistID = jsonResponse.id;
+            return playlistID
+            })
+        
+        const playlistID = jsonResponse.id;
+        return fetch(`/v1/users/${userId}/playlists/${playlistID}/tracks)`,{
+            headers: headers,
+            method: 'POST',
+            body: JSON.stringify({uri: trackURIs})
+        }).then(response => {return response.json()
+        }).then(jsonResponse => {
+            playlistID = jsonResponse.id
+            })
         }
-    }
-};
+    };
 
 
 
