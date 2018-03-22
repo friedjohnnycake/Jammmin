@@ -75,9 +75,12 @@ class App extends Component {
 
 // 
 search(term) {
-  Spotify.search(term);
-    console.log(`Searching Spotify for: ${term}`)
+  Spotify.search(term).then(searchResults => this.setState({searchResults: searchResults}));
+  console.log(`You are searching Spotify for ${term}`);
 }
+  
+
+
 
 
   render() {
@@ -95,6 +98,7 @@ search(term) {
     )
   }
 }
+
  
 
 export default App;

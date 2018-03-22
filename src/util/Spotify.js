@@ -32,15 +32,15 @@ const Spotify = {
     
     //returns a promise that will eventually resolve to a list of tracks
     search(term) {
-        const getAccessToken = Spotify.getAccessToken();
+        const accessToken = Spotify.getAccessToken();
         return fetch(`https://api.spotify.com/v1/search?type=track&q=${term}`,
         {headers: {
             'Authorization': `Bearer ${accessToken}` 
         }
-        }).then(response => {return response.json()
+        }).then(response => {return response.json();
         }).then(jsonResponse => {
             if (jsonResponse.track) {
-                return jsonResponse.track.map(track => ({
+                return jsonResponse.track.items.map(track => ({
                     id: track.id,
                     name: track.name,
                     artist: track.artist,
@@ -63,7 +63,7 @@ const Spotify = {
 
         return fetch('https://api.spotify.com/v1/me', {
             headers: headers
-        }).then(response => {return response.json()
+        }).then(response => {return response.json();
         }).then(jsonResponse => {
             userId = jsonResponse.id;
             })
@@ -81,7 +81,7 @@ const Spotify = {
             headers: headers,
             method: 'POST',
             body: JSON.stringify({uri: trackURIs})
-        }).then(response => {return response.json()
+        }).then(response => {return response.json();
         }).then(jsonResponse => {
             this.playlistID = jsonResponse.id
             })
