@@ -64,6 +64,7 @@ class App extends Component {
       this.setState({playlistTracks: filteredTracks})
     };
   }
+
   
   // Changes the name of the Playlist
   updatePlaylistName(name) {
@@ -71,14 +72,15 @@ class App extends Component {
   }
 
 // generates a list of uris from the playlistTracks property
-  savePlaylist(){
-    const trackURIs = this.state.playlistTracks.map(track => track.uri);
-    Spotify.savePlaylist(this.state.playlistName, trackURIs);
-    this.setState({
-      searchResults: []
-    });
-    this.updatePlaylistName('New Playlist');
-  }
+savePlaylist(){
+  const trackUris = this.state.playlistTracks.map(track => track.uri);
+  Spotify.savePlaylist(this.state.playlistName, trackUris).then(() => {
+  this.setState({
+    playlistTracks: [],
+    playlistName: 'New Playlist'
+  });
+})
+}
 
 // 
 search(term) {
