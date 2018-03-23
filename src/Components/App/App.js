@@ -36,9 +36,9 @@ class App extends Component {
 
     this.state = {
     searchResults: [],
-    playlistName: "New Playlist",
+    playlistName: "",
     playlistTracks: []
-  }
+  };
 
     this.addTrack = this.addTrack.bind(this);
     this.removeTrack = this.removeTrack.bind(this);
@@ -79,7 +79,9 @@ savePlaylist(){
     playlistTracks: [],
     playlistName: 'New Playlist'
   });
-})
+  console.log(this.state.playlistName)
+});
+
 }
 
 // 
@@ -97,7 +99,7 @@ search(term) {
         <SearchBar onSearch={this.search}/>
         <div className="App-playlist">
           <SearchResults searchResults = {this.state.searchResults} isRemoval={false} onAdd = {this.addTrack}/>
-          <Playlist playlistName={this.state.playlistName} isRemoval={true} onSave = {this.savePlaylist} nameChange = {this.updatePlaylistName} playlistTracks={this.state.playlistTracks} onRemove={this.removeTrack}/>
+          <Playlist  isRemoval={true} onSave = {this.savePlaylist} nameChange = {this.updatePlaylistName} playlistTracks={this.state.playlistTracks} onRemove={this.removeTrack}/>
         </div>
       </div>
     </div>
