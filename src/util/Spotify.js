@@ -1,5 +1,5 @@
 
-const redirectURI = 'http://localhost:3000/';
+const redirectURI = 'kyles_jammming.surge.sh';
 const clientID = '3f89fc5e12694f2fb340fcfd99361d6a';
 
 

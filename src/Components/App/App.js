@@ -34,7 +34,7 @@ class App extends Component {
     //   album: " "}
     // ]}
 
-    this.state = {term: '',
+    this.state = {
     searchResults: [],
     playlistName: '',
     playlistTracks: []
