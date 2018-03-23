@@ -9,29 +9,36 @@ class App extends Component {
   constructor(props){
     super(props);
 
-    this.state = {searchResults: [
-      {name: " ", 
-      artist: " ", 
-      album: " "},
-      {name: " ", 
-      artist: " ", 
-      album: " "},
-      {name: " ", 
-      artist: " ", 
-      album: " "}
-    ],
+    // this.state = {term: '',
+    // searchResults: [
+    //   {name: " ", 
+    //   artist: " ", 
+    //   album: " "},
+    //   {name: " ", 
+    //   artist: " ", 
+    //   album: " "},
+    //   {name: " ", 
+    //   artist: " ", 
+    //   album: " "}
+    // ],
+    // playlistName: '',
+    // playlistTracks: [
+    //   {name: " ", 
+    //   artist: " ", 
+    //   album: " "},
+    //   {name: " ", 
+    //   artist: " ", 
+    //   album: " "},
+    //   {name: " ", 
+    //   artist: " ", 
+    //   album: " "}
+    // ]}
+
+    this.state = {term: '',
+    searchResults: [],
     playlistName: '',
-    playlistTracks: [
-      {name: " ", 
-      artist: " ", 
-      album: " "},
-      {name: " ", 
-      artist: " ", 
-      album: " "},
-      {name: " ", 
-      artist: " ", 
-      album: " "}
-    ]}
+    playlistTracks: []
+  }
 
     this.addTrack = this.addTrack.bind(this);
     this.removeTrack = this.removeTrack.bind(this);
@@ -75,14 +82,11 @@ class App extends Component {
 
 // 
 search(term) {
-  Spotify.search(term).then(searchResults => this.setState({searchResults: searchResults}));
+  console.log(term);
+  Spotify.search(term).then(spotifyResults => this.setState({searchResults: spotifyResults}));
   console.log(`You are searching Spotify for ${term}`);
 }
   
-
-
-
-
   render() {
     return (
       <div>
