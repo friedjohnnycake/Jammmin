@@ -9,31 +9,6 @@ class App extends Component {
   constructor(props){
     super(props);
 
-    // this.state = {term: '',
-    // searchResults: [
-    //   {name: " ", 
-    //   artist: " ", 
-    //   album: " "},
-    //   {name: " ", 
-    //   artist: " ", 
-    //   album: " "},
-    //   {name: " ", 
-    //   artist: " ", 
-    //   album: " "}
-    // ],
-    // playlistName: '',
-    // playlistTracks: [
-    //   {name: " ", 
-    //   artist: " ", 
-    //   album: " "},
-    //   {name: " ", 
-    //   artist: " ", 
-    //   album: " "},
-    //   {name: " ", 
-    //   artist: " ", 
-    //   album: " "}
-    // ]}
-
     this.state = {
     searchResults: [],
     playlistName: "New Playlist",
@@ -82,7 +57,7 @@ savePlaylist(){
   console.log(this.state.playlistName);
 }
 
-// 
+
 search(term) {
   console.log(term);
   Spotify.search(term).then(spotifyResults => this.setState({searchResults: spotifyResults}));

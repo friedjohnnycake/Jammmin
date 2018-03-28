@@ -1,5 +1,5 @@
 
-const redirectURI = 'http://localhost:3000/';
+const redirectURI = window.location.href;
 const clientID = '3f89fc5e12694f2fb340fcfd99361d6a';
 
 
@@ -54,38 +54,6 @@ const Spotify = {
         });
     },
 
-    // savePlaylist(name, trackURIs) {
-    //     if(!name|| !trackURIs){
-    //         return
-    //     };
-    //     const accessToken = Spotify.getAccessToken();
-    //     let headers = {'Authorization': 'Bearer ' + accessToken};
-    //     let userId = '';
-
-    //     return fetch('https://api.spotify.com/v1/me', {
-    //         headers: headers
-    //     }).then(response => {return response.json();
-    //     }).then(jsonResponse => {
-    //         userId = jsonResponse.id;
-    //         })
-    //     return fetch(`/v1/users/${userId}/playlists`, {
-    //         method: 'POST',
-    //         headers: headers,
-    //         body: JSON.stringify({name: name})
-    //     }).then(response => {return response.json()
-    //     }).then(jsonResponse => {
-    //         const playlistID = this.jsonResponse.id;
-    //     return fetch(`/v1/users/${userId}/playlists/${playlistID}/tracks)`,{
-    //         headers: headers,
-    //         method: 'POST',
-    //         body: JSON.stringify({uri: trackURIs})
-    //     }).then(response => {return response.json();
-    //     }).then(jsonResponse => {
-    //         this.playlistID = jsonResponse.id
-    //         })
-    //     })
-    // }
-    // };
 
     savePlaylist(name, trackUris) {
         if (!name || !trackUris.length) {
